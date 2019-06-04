@@ -41,4 +41,23 @@ public class AnimalDaoUnitTest {
 		animalDao.update(updateAnimal);
 		assertNotEquals(animal.getType(), animalDao.get(1L).getType());
 	}
+
+	@Test
+	public void testFindAnimalByName() {
+		AnimalDao animalDao = new AnimalDaoImpl();
+		Animal animal = Animal.builder().withName("JUNIT").withId(1L).build();
+		animalDao.create(animal);
+		assertEquals(animal.getName(), animalDao.findAnimalByName("JUNIT").getName());
+	}
+
+	@Test
+	public void testFindAnimalsByName() {
+		AnimalDao animalDao = new AnimalDaoImpl();
+		Animal a = Animal.builder().withId(1L).withName("JUNIT").build();
+		animalDao.create(a);
+		animalDao.create(Animal.builder().withId(2L).withName("JUNIT2").build());
+		animalDao.create(Animal.builder().withId(3L).withName("JUNIT3").build());
+		assertTrue(animalDao.findAnimalsByName("JUNIT").contains(a));
+		
+	}
 }
