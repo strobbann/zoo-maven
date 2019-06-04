@@ -2,10 +2,7 @@ package se.rosa.dao;
 
 import se.rosa.domain.Animal;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.*;
 import java.util.stream.Collectors;
 
@@ -55,6 +52,11 @@ public class AnimalDaoImpl implements AnimalDao {
 	@Override
 	public List<Animal> findAnimalsByType(Animal.AnimalType animalType) {
 		return searchByReturnList(animal -> animal.getType().equals(animalType));
+	}
+
+	@Override
+	public List<Animal> getAll() {
+		return new ArrayList<>(animals.values());
 	}
 
 	public void animalChecker(Animal animal, Consumer<Animal> consumer) {

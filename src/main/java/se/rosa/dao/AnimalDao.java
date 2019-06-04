@@ -22,4 +22,6 @@ public interface AnimalDao {
 	List<Animal> findAnimalsByName(String name);
 
 	List<Animal> findAnimalsByType(Animal.AnimalType animalType);
+
+	List<Animal> getAll();
 }

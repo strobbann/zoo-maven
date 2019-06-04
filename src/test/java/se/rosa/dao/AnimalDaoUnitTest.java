@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import se.rosa.domain.Animal;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import static org.junit.Assert.*;
@@ -70,5 +71,16 @@ public class AnimalDaoUnitTest {
 		animalDao.create(animal2);
 		animalDao.create(Animal.builder().withId(3L).withName("JUNIT3").withType(Animal.AnimalType.BIRD).build());
 		assertTrue(animalDao.findAnimalsByType(Animal.AnimalType.DOG).containsAll(Arrays.asList(animal, animal2)));
+	}
+
+	@Test
+	public void testGetAll() {
+		AnimalDao animalDao = new AnimalDaoImpl();
+		Animal animal = Animal.builder().withId(1L).withName("JUNIT").build();
+		Animal animal2 = Animal.builder().withId(2L).withName("JUNIT2").build();
+		animalDao.create(animal);
+		animalDao.create(animal2);
+		animalDao.create(Animal.builder().withId(3L).withName("JUNIT3").build());
+		assertTrue(animalDao.getAll().containsAll(Arrays.asList(animal, animal2)));
 	}
 }
