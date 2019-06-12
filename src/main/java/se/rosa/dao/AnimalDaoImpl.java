@@ -59,13 +59,8 @@ public class AnimalDaoImpl implements AnimalDao {
 		return new ArrayList<>(animals.values());
 	}
 
-	public void animalChecker(Animal animal, Consumer<Animal> consumer) {
-		Animal a = Optional.ofNullable(animal).orElseThrow(() -> new IllegalArgumentException("Animal is null"));
-		consumer.accept(animal);
-	}
-
 	public Animal animalChecker(Animal animal, Supplier<Animal> supplier) {
-		Animal a = Optional.ofNullable(animal).orElseThrow(() -> new IllegalArgumentException("Animal is null"));
+		Optional.ofNullable(animal).orElseThrow(() -> new IllegalArgumentException("Animal is null"));
 		return supplier.get();
 	}
 
