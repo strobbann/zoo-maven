@@ -12,11 +12,16 @@ public class AnimalServiceImpl implements AnimalService {
 	private AnimalDao animalDao;
 
 	public AnimalServiceImpl(AnimalDao animalDao) {
-		this.animalDao = animalDao;
+		this.animalDao = Objects.requireNonNull(animalDao, "animalDao cannot be null");
 	}
 
 	@Override
-	public List<String> namesOfAllAnimals() {
+	public List<String> getNamesOfAllAnimals() {
 		return animalDao.getAll().stream().map(Animal::getName).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<Animal.AnimalType> getAllAnimalTypes() {
+		return animalDao.getAll().stream().map(Animal::getType).distinct().collect(Collectors.toList());
 	}
 }
