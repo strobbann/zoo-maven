@@ -1,6 +1,7 @@
 package se.rosa.dao;
 
 import se.rosa.domain.Animal;
+import se.rosa.logging.Logger;
 
 import java.util.*;
 import java.util.function.*;
@@ -13,13 +14,25 @@ import java.util.stream.Collectors;
 public class AnimalDaoImpl implements AnimalDao {
 
 	private HashMap<Long, Animal> animals;
+	private Logger logger;
 
-	public AnimalDaoImpl() {
+	private AnimalDaoImpl() {
 		animals = new HashMap<>();
+	}
+
+	public void setLogger(Logger logger) {
+		this.logger = logger;
+	}
+
+	public void log(String message) {
+		if (logger != null) {
+			logger.log(message, this);
+		}
 	}
 
 	@Override
 	public void create(Animal animal) {
+		log("on create");
 		animalChecker(animal, () -> animals.put(animal.getId(), animal));
 	}
 

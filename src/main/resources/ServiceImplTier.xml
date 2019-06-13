@@ -5,6 +5,7 @@
         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
     <bean id = "animalService" class = "se.rosa.service.AnimalServiceImpl">
         <constructor-arg name="animalDao" ref="animalDao"/>
+        <constructor-arg name="logger" ref="logger"/>
     </bean>
 
 </beans>
