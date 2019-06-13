@@ -16,7 +16,7 @@ public class AnimalDaoImpl implements AnimalDao {
 	private HashMap<Long, Animal> animals;
 	private Logger logger;
 
-	private AnimalDaoImpl() {
+	public AnimalDaoImpl() {
 		animals = new HashMap<>();
 	}
 
