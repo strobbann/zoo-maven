@@ -19,6 +19,7 @@ public class MainSpring {
 		AnimalService animalService = context.getBean(AnimalService.class);
 		AnimalDao animalDao = context.getBean(AnimalDao.class);
 		animalDao.create(Animal.builder().withId(1L).withName("Hello World").withType(Animal.AnimalType.BIRD).build());
+		animalDao.read(1L);
 		System.out.println(animalService.getNamesOfAllAnimals());
 
 		Producer producer = new Producer();

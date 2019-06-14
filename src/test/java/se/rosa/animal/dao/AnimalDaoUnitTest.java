@@ -35,21 +35,31 @@ public class AnimalDaoUnitTest {
 
 	@Test
 	public void testDelete() {
+		AnimalDao animalDao = new AnimalDaoImpl();
 		Animal animal = Animal.builder().withId(1L).withName("JUNIT").build();
+		ex.expect(IllegalArgumentException.class);
+		ex.expectMessage("Animal does not exist");
+		animalDao.create(animal);
+		animalDao.delete(animal.getId());
+		animalDao.read(animal.getId());
+
+
+
+		/*Animal animal = Animal.builder().withId(1L).withName("JUNIT").build();
 		ex.expect(IllegalArgumentException.class);
 		ex.expectMessage("Animal is null");
 		doNothing().when(animalDao).create(isA(Animal.class));
 		animalDao.create(animal);
 		verify(animalDao, times(1)).create(animal);
 
-		doNothing().when(animalDao).delete(isA(Long.class));
+		doCallRealMethod().when(animalDao).delete(isA(Long.class));
 		animalDao.delete(animal.getId());
 		verify(animalDao, times(1)).delete(animal.getId());
 
 		doThrow(new IllegalArgumentException("Animal is null"))
 				.when(animalDao.read(isA(Long.class)));
 
-		animalDao.read(animal.getId());
+		animalDao.read(animal.getId());*/
 	}
 
 	@Test

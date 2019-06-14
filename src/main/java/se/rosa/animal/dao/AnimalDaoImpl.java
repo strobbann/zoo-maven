@@ -3,6 +3,7 @@ package se.rosa.animal.dao;
 import se.rosa.animal.domain.Animal;
 import se.rosa.logging.Logger;
 
+import java.lang.reflect.Method;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -25,20 +26,24 @@ public class AnimalDaoImpl implements AnimalDao {
 		this.logger = logger;
 	}
 
-	public void log(String message) {
+	public void log() {
 		if (logger != null) {
-			logger.log(message, this);
+			StackTraceElement[] stackTraceElements = new Throwable().getStackTrace();
+			logger.log(stackTraceElements[1].getMethodName(), this);
+
+
 		}
 	}
 
 	@Override
 	public void create(Animal animal) {
-		log("on create");
+		log();
 		animalChecker(animal, () -> animals.put(animal.getId(), animal));
 	}
 
 	@Override
 	public Animal read(Long id) {
+		log();
 		return animalChecker(animals.get(id));
 	}
 
@@ -74,12 +79,12 @@ public class AnimalDaoImpl implements AnimalDao {
 	}
 
 	public Animal animalChecker(Animal animal, Supplier<Animal> supplier) {
-		Optional.ofNullable(animal).orElseThrow(() -> new IllegalArgumentException("Animal is null"));
+		Optional.ofNullable(animal).orElseThrow(() -> new IllegalArgumentException("Animal does not exist"));
 		return supplier.get();
 	}
 
 	public Animal animalChecker(Animal animal) {
-		return Optional.ofNullable(animal).orElseThrow(() -> new IllegalArgumentException("Animal is null"));
+		return Optional.ofNullable(animal).orElseThrow(() -> new IllegalArgumentException("Animal does not exist"));
 	}
 
 	public Animal searchByReturnSingle(Predicate<Animal> predicate) {
@@ -87,7 +92,7 @@ public class AnimalDaoImpl implements AnimalDao {
 				.filter(predicate)
 				.findFirst()
 				.map(a -> a)
-				.orElseThrow(() -> new IllegalArgumentException("Animal is null"));
+				.orElseThrow(() -> new IllegalArgumentException("Animal cannot be found"));
 	}
 
 	public List<Animal> searchByReturnList(Predicate<Animal> predicate) {
