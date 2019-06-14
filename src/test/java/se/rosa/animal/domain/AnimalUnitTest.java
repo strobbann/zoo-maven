@@ -1,4 +1,4 @@
-package se.rosa.domain;
+package se.rosa.animal.domain;
 
 import org.junit.Test;
 

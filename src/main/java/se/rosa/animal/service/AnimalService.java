@@ -1,6 +1,7 @@
-package se.rosa.service;
+package se.rosa.animal.service;
 
-import se.rosa.domain.Animal;
+
+import se.rosa.animal.domain.Animal;
 
 import java.util.List;
 

@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
    http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="animalDao" class="se.rosa.dao.AnimalDaoImpl">
+    <bean id="animalDao" class="se.rosa.animal.dao.AnimalDaoImpl">
         <property name="logger" ref="logger"/>
     </bean>
 

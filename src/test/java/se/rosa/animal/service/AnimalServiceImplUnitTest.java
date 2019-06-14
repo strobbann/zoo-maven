@@ -1,9 +1,9 @@
-package se.rosa.service;
+package se.rosa.animal.service;
 
 import org.junit.Test;
-import se.rosa.dao.AnimalDao;
-import se.rosa.dao.AnimalDaoImpl;
-import se.rosa.domain.Animal;
+import se.rosa.animal.dao.AnimalDao;
+import se.rosa.animal.dao.AnimalDaoImpl;
+import se.rosa.animal.domain.Animal;
 import se.rosa.logging.LoggerConsoleStandard;
 
 import static junit.framework.TestCase.assertEquals;

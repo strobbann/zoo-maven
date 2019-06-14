@@ -1,7 +1,7 @@
-package se.rosa.service;
+package se.rosa.animal.service;
 
-import se.rosa.dao.AnimalDao;
-import se.rosa.domain.Animal;
+import se.rosa.animal.dao.AnimalDao;
+import se.rosa.animal.domain.Animal;
 import se.rosa.logging.Logger;
 
 import java.util.List;
@@ -13,7 +13,7 @@ public class AnimalServiceImpl implements AnimalService {
 	private AnimalDao animalDao;
 	private Logger logger;
 
-	private AnimalServiceImpl(AnimalDao animalDao, Logger logger) {
+	public AnimalServiceImpl(AnimalDao animalDao, Logger logger) {
 		this.animalDao = Objects.requireNonNull(animalDao, "animalDao cannot be null");
 		this.logger = Objects.requireNonNull(logger);
 	}

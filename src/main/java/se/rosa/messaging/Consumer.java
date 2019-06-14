@@ -1,6 +1,6 @@
 package se.rosa.messaging;
 
-import se.rosa.domain.Animal;
+import se.rosa.animal.domain.Animal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +23,6 @@ public class Consumer implements Runnable {
 
 	@Override
 	public void run() {
-		events.forEach((event) -> eventListeners.forEach(producerListener -> producerListener.on(event) ));
+		events.forEach((event) -> eventListeners.forEach(producerListener -> producerListener.on(event)));
 	}
 }

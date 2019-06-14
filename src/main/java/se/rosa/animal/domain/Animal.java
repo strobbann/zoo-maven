@@ -1,6 +1,5 @@
-package se.rosa.domain;
+package se.rosa.animal.domain;
 
-import javax.swing.text.html.Option;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -11,7 +10,7 @@ public class Animal {
 
 	private Long id;
 	private String name;
-	private AnimalType animalType;
+	private Animal.AnimalType animalType;
 
 
 	private Animal(Builder builder) {

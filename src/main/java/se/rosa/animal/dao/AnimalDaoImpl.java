@@ -1,10 +1,11 @@
-package se.rosa.dao;
+package se.rosa.animal.dao;
 
-import se.rosa.domain.Animal;
+import se.rosa.animal.domain.Animal;
 import se.rosa.logging.Logger;
 
 import java.util.*;
-import java.util.function.*;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 /**
@@ -16,7 +17,7 @@ public class AnimalDaoImpl implements AnimalDao {
 	private HashMap<Long, Animal> animals;
 	private Logger logger;
 
-	private AnimalDaoImpl() {
+	public AnimalDaoImpl() {
 		animals = new HashMap<>();
 	}
 
@@ -37,18 +38,18 @@ public class AnimalDaoImpl implements AnimalDao {
 	}
 
 	@Override
-	public Animal get(Long id) {
+	public Animal read(Long id) {
 		return animalChecker(animals.get(id));
 	}
 
 	@Override
-	public void update(Animal animal) {
-		animalChecker(animals.get(animal.getId()), () -> animals.put(animal.getId(), animal));
+	public Animal update(Animal animal) {
+		return animalChecker(animals.get(animal.getId()), () -> animals.put(animal.getId(), animal));
 	}
 
 	@Override
-	public void delete(Long id) {
-		animalChecker(animals.get(id), () -> animals.remove(id));
+	public Animal delete(Long id) {
+		return animalChecker(animals.get(id), () -> animals.remove(id));
 	}
 
 	@Override

@@ -1,11 +1,10 @@
-package se.rosa.dao;
+package se.rosa.animal.dao;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import se.rosa.domain.Animal;
+import se.rosa.animal.domain.Animal;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import static org.junit.Assert.*;
@@ -21,7 +20,7 @@ public class AnimalDaoUnitTest {
 	public void testCreateGet() {
 		AnimalDao animalDao = new AnimalDaoImpl();
 		animalDao.create(Animal.builder().withId(1L).withName("JUNIT").build());
-		assertNotNull(animalDao.get(1L));
+		assertNotNull(animalDao.read(1L));
 	}
 
 	@Test
@@ -31,7 +30,7 @@ public class AnimalDaoUnitTest {
 		AnimalDao animalDao = new AnimalDaoImpl();
 		animalDao.create(Animal.builder().withId(1L).withName("JUNIT").build());
 		animalDao.delete(1L);
-		animalDao.get(1L);
+		animalDao.read(1L);
 	}
 
 	@Test
@@ -39,10 +38,10 @@ public class AnimalDaoUnitTest {
 		AnimalDao animalDao = new AnimalDaoImpl();
 		Animal animal = Animal.builder().withId(1L).withName("JUNIT").withType(Animal.AnimalType.DOG).build();
 		animalDao.create(animal);
-		assertEquals(animal.getType(), animalDao.get(1L).getType());
+		assertEquals(animal.getType(), animalDao.read(1L).getType());
 		Animal updateAnimal = Animal.builder().withId(animal.getId()).withName(animal.getName()).withType(Animal.AnimalType.CAT).build();
 		animalDao.update(updateAnimal);
-		assertNotEquals(animal.getType(), animalDao.get(1L).getType());
+		assertNotEquals(animal.getType(), animalDao.read(1L).getType());
 	}
 
 	@Test
