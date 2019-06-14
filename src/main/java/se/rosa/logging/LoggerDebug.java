@@ -1,9 +1,9 @@
 package se.rosa.logging;
 
-public class LoggerDebug implements Logger{
+public class LoggerDebug<T> implements Logger<T>{
 
 	@Override
-	public void log(String message, Object obj) {
-		System.err.println("in class: " + obj.getClass().getSimpleName()+ ": " + message);
+	public void log(String message, T t) {
+		System.err.println("In class: " + t.getClass().getSimpleName() + ": " + message);
 	}
 }

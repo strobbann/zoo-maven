@@ -11,15 +11,15 @@ import java.util.stream.Collectors;
 public class AnimalServiceImpl implements AnimalService {
 
 	private AnimalDao animalDao;
-	private Logger logger;
+	private Logger<AnimalServiceImpl> logger;
 
-	public AnimalServiceImpl(AnimalDao animalDao, Logger logger) {
+	public AnimalServiceImpl(AnimalDao animalDao, Logger<AnimalServiceImpl> logger) {
 		this.animalDao = Objects.requireNonNull(animalDao, "animalDao cannot be null");
 		this.logger = Objects.requireNonNull(logger);
 	}
 
 	public void log(String message) {
-		logger.log(message, this);
+		logger.log(message,this);
 	}
 
 	@Override

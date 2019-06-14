@@ -11,19 +11,19 @@ import java.util.*;
 public class UserDaoImpl implements UserDao {
 
 	private Map<Long, User> users;
-	private Logger logger;
+	private Logger<UserDaoImpl> logger;
 
 	public UserDaoImpl() {
 		users = new HashMap<>();
 	}
 
-	public void setLogger(Logger logger) {
+	public void setLogger(Logger<UserDaoImpl> logger) {
 		this.logger = logger;
 	}
 
 	public void log(String message) {
 		if (logger != null) {
-			logger.log(message, this);
+			logger.log(message,this);
 		}
 	}
 
