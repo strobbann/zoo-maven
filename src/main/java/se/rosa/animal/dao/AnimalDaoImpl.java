@@ -16,13 +16,13 @@ import java.util.stream.Collectors;
 public class AnimalDaoImpl implements AnimalDao {
 
 	private HashMap<Long, Animal> animals;
-	private Logger logger;
+	private Logger<AnimalDaoImpl> logger;
 
 	public AnimalDaoImpl() {
 		animals = new HashMap<>();
 	}
 
-	public void setLogger(Logger logger) {
+	public void setLogger(Logger<AnimalDaoImpl> logger) {
 		this.logger = logger;
 	}
 
@@ -88,7 +88,6 @@ public class AnimalDaoImpl implements AnimalDao {
 		return animals.values().stream()
 				.filter(predicate)
 				.findFirst()
-				.map(a -> a)
 				.orElseThrow(() -> new IllegalArgumentException("Animal cannot be found"));
 	}
 
