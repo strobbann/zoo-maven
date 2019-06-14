@@ -26,24 +26,21 @@ public class AnimalDaoImpl implements AnimalDao {
 		this.logger = logger;
 	}
 
-	public void log() {
+	public void log(String message) {
 		if (logger != null) {
-			StackTraceElement[] stackTraceElements = new Throwable().getStackTrace();
-			logger.log(stackTraceElements[1].getMethodName(), this);
-
-
+			logger.log(message, this);
 		}
 	}
 
 	@Override
 	public void create(Animal animal) {
-		log();
+		log("on create");
 		animalChecker(animal, () -> animals.put(animal.getId(), animal));
 	}
 
 	@Override
 	public Animal read(Long id) {
-		log();
+		log("on read");
 		return animalChecker(animals.get(id));
 	}
 
